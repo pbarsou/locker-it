@@ -1,0 +1,126 @@
+.app-container {
+  width: 90%;
+  height: 95%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px;
+  color: rgb(171, 16, 228);
+  background: #FFFFFF;
+  border-radius: 10px;
+}
+
+.header {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto 12px;
+}
+
+.header span {
+  font-weight: 900;
+  font-size: 20px;
+  word-break: break-all;
+}
+
+.button {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 6px;
+  color: #FFFFFF;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(171, 16, 228);
+}
+
+.div-table {
+  padding: 10px;
+  width: auto; 
+  height:inherit; 
+  overflow:auto;
+}
+
+/*.divTable::-webkit-scrollbar {
+  width: 12px;
+  background-color: whitesmoke; 
+}
+
+.divTable::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: darkgray; 
+}*/
+
+table {
+  width: 100%;
+  border-spacing: 10px;
+  word-break: break-all;
+  border-collapse: collapse;
+}
+
+tr {
+  background-color: rgb(171, 16, 228);
+  color: white;
+  border-bottom: 1px solid rgb(238, 235, 235);
+}
+
+tbody tr td {
+  vertical-align: text-top;
+  padding: 6px;
+  max-width: 50px;
+}
+
+thead tr th {
+  padding: 5px;
+  text-align: start;
+  margin-bottom: 50px;
+}
+
+tbody tr {
+  margin-bottom: 50px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(171, 16, 228);
+  border-bottom: 1px solid rgb(204, 132, 230);;
+}
+
+thead tr th.acao {
+  width: 100px!important;
+  text-align: center;
+}
+
+tbody tr td.acao {
+  text-align: center;
+}
+
+tbody tr td.table-button-image {
+  text-align: center;
+  vertical-align: bottom; 
+  cursor: pointer;
+}
+
+tbody tr td button.table-button {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  body {
+    font-size: 10px;
+  }
+  
+  .header span {
+    font-size: 15px;
+  }
+
+  .button {
+    padding: 5px;
+    font-size: 10px;
+  }
+
+  thead tr th.acao {
+    width: auto!important;
+  }
+}
+
