@@ -37,10 +37,12 @@ export default function FormDialog(props) {
         contact: props.values.contact,
       },
     ]);
-    console.log(props.listClient);
+    // console.log(props.listClient);
+    handleClose();
+    console.log(props.values.name)
   }
 
-  const handleClose = () => {
+  function handleClose() {
     props.setOpen(false);
   };
 
@@ -148,7 +150,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="name"
             label="Nome"
-            //defaultValue={props.title}
+            //defaultValue={props.values.name}
             type="text"
             fullWidth
           />
@@ -157,7 +159,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="email"
             label="E-mail"
-            //defaultValue={props.cost}
+            //defaultValue={props.values.email}
             type="text"
             fullWidth
           />
@@ -166,7 +168,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="contact"
             label="Contato"
-            //defaultValue={props.category}
+            //defaultValue={props.contact}
             type="text"
             fullWidth
           />
@@ -175,7 +177,7 @@ export default function FormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button color="primary">
+          <Button onClick={handleRegisterClient} color="primary">
             Salvar
           </Button>
         </DialogActions>
