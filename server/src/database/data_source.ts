@@ -1,20 +1,21 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { Client } from "../entities/Client";
 //require('dotenv/config');
 
-export const MysqlDataSource = new DataSource({
+export const MyPostgresDataSource = new DataSource({
   type: "postgres",
   host: "192.168.0.3",
   port: 5432,
   username: "postgres",
   password: "admin",
   database: "locker-it",
-  entities: [],
+  entities: [Client],
   subscribers: [],
   migrations: ["./src/database/migrations/*.ts"],
 });
 
-MysqlDataSource.initialize()
+MyPostgresDataSource.initialize()
     .then(() => {
         console.log("Mysql Data Source has been initialized!")
     })
