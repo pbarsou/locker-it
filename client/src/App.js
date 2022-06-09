@@ -1,25 +1,26 @@
 import './App.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormDialog from './components/dialog'
-import { AiOutlineEdit } from 'react-icons/ai';
-import { BsTrash } from 'react-icons/bs';
+import Axios from 'axios';
+import TableLine from './components/TableLine';
 
 function App() {
 
   const [open, setOpen] = useState(false);
-  const [cadastro, setCadastro] = useState(false)
+  const [cadastro, setCadastro] = useState()
   const [values, setValues] = useState();
   const [listClient, setListClient] = useState([]);
 
-  const handleClickInclude = () => {
+  function handleClickInclude() {
     setCadastro(true);
     setOpen(true);
   }
 
-  const handleClickEdit = () => {
-    setCadastro(false);
-    setOpen(true);
-  }
+  useEffect(() => {
+    Axios.get("http://localhost:3333/clients").then(response => {
+      setListClient(response.data);
+    });
+  }, [])
 
   return (
     <>
@@ -37,6 +38,7 @@ function App() {
               <th>Nome</th>
               <th>E-mail</th>
               <th>Contato</th>
+              <th>Data de Criação</th>
               <th className="acao">Editar</th>
               <th className="acao">Excluir</th>
             </tr>
@@ -44,13 +46,26 @@ function App() {
           <tbody>
             {listClient.length !== 0 ? (
               listClient.map((value) => (
-                <tr>
+                <TableLine key={value.id}
+                listClient={listClient}
+                setListClient={setListClient}
+                setOpen={setOpen}
+                cadastro={cadastro}
+                setCadastro={setCadastro}
+                id={value.id}
+                name={value.name}
+                email={value.email}
+                contact={value.contact}
+                created_at={value.created_at}
+                />
+                /*<tr>
                 <td>{value.name}</td>
                 <td>{value.email}</td>
                 <td>{value.contact}</td>
+                <td>{value.created_at}</td>
                 <td className="table-button-image" onClick={handleClickEdit}><AiOutlineEdit size={23}/></td>
                 <td className="table-button-image"><BsTrash size={18}/></td>
-              </tr>
+              </tr>*/
               ))
             ) : (
               <tr>

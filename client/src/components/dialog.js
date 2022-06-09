@@ -1,25 +1,13 @@
-import React, { useState } from "react";
+import { React } from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Axios from 'axios';
 
 export default function FormDialog(props) {
-  /*const [editValues, setEditValues] = useState({
-    id: props.id,
-    name: props.title,
-    cost: props.cost,
-    category: props.category,
-  });
-
-  const handleChangeValues = (values) => {
-    setEditValues((prevValues) => ({
-      ...prevValues,
-      [values.target.id]: values.target.value,
-    }));
-  }; */
 
   const handleChangeValues = (value) => {
     props.setValues((prevValues) => ({
@@ -28,8 +16,15 @@ export default function FormDialog(props) {
     }))
   }
 
+  const handleChangeEditValues = (value) => {
+    props.setEditValues((prevValues) => ({
+      ...prevValues,
+      [value.target.id]: value.target.value,
+    }))
+  }
+
   const handleRegisterClient = () => {
-    props.setListClient([
+    /*props.setListClient([
       ...props.listClient,
       {
         name: props.values.name,
@@ -39,46 +34,34 @@ export default function FormDialog(props) {
     ]);
     // console.log(props.listClient);
     handleClose();
-    console.log(props.values.name)
+    console.log(props.values.name)*/
+    console.log(props.values.name);
+    Axios.post("http://localhost:3333/clients", {
+      name: props.values.name,
+      email: props.values.email,
+      contact: props.values.contact
+    }).then(response => {
+      console.log(response);
+      handleClose();
+    })
   }
 
   function handleClose() {
     props.setOpen(false);
   };
 
-  /*const handleEditGame = () => {
-    Axios.put("http://localhost:3001/edit", {
-      id: editValues.id,
-      name: editValues.name,
-      cost: editValues.cost,
-      category: editValues.category,
-    }).then(() => {
-      props.setListCard(
-        props.listCard.map((value) => {
-          return value.id == editValues.id
-            ? {
-                id: editValues.id,
-                name: editValues.name,
-                cost: editValues.cost,
-                category: editValues.category,
-              }
-            : value;
-        })
-      );
-    });
+  const handleEditClient = () => {
+    console.log(props.id)
+    console.log(props.editValues)
+    Axios.put(`http://localhost:3333/clients/${props.editValues.id}`, {
+      name: props.editValues.name,
+      email: props.editValues.email,
+      contact: props.editValues.contact,
+    }).then((response) => {
+      console.log(response)
+      })
     handleClose();
   };
-
-  const handleDeleteGame = () => {
-    Axios.delete(`http://localhost:3001/delete/${editValues.id}`).then(() => {
-      props.setListCard(
-        props.listCard.filter((value) => {
-          return value.id != editValues.id;
-        })
-      );
-    });
-    handleClose();
-  }; */
 
   return (
     <div>
@@ -94,7 +77,6 @@ export default function FormDialog(props) {
             margin="dense"
             id="name"
             label="Nome"
-            //defaultValue={props.title}
             type="text"
             fullWidth
             onChange={handleChangeValues}
@@ -104,7 +86,6 @@ export default function FormDialog(props) {
             margin="dense"
             id="email"
             label="E-mail"
-            //defaultValue={props.cost}
             type="text"
             fullWidth
             onChange={handleChangeValues}
@@ -114,7 +95,6 @@ export default function FormDialog(props) {
             margin="dense"
             id="contact"
             label="Contato"
-            //defaultValue={props.category}
             type="text"
             fullWidth
             onChange={handleChangeValues}
@@ -141,7 +121,7 @@ export default function FormDialog(props) {
             margin="dense"
             id="id"
             label="ID"
-            //defaultValue={props.id}
+            defaultValue={props.id}
             type="text"
             fullWidth
           />
@@ -150,25 +130,38 @@ export default function FormDialog(props) {
             margin="dense"
             id="name"
             label="Nome"
-            //defaultValue={props.values.name}
+            defaultValue={props.name}
             type="text"
             fullWidth
+            onChange={handleChangeEditValues}
           />
           <TextField
             autoFocus
             margin="dense"
             id="email"
             label="E-mail"
-            //defaultValue={props.values.email}
+            defaultValue={props.email}
             type="text"
             fullWidth
+            onChange={handleChangeEditValues}
           />
           <TextField
             autoFocus
             margin="dense"
             id="contact"
             label="Contato"
-            //defaultValue={props.contact}
+            defaultValue={props.contact}
+            type="text"
+            fullWidth
+            onChange={handleChangeEditValues}
+          />
+          <TextField
+            disabled
+            autoFocus
+            margin="dense"
+            id="created_at"
+            label="Data de Criação"
+            defaultValue={props.created_at}
             type="text"
             fullWidth
           />
@@ -177,7 +170,7 @@ export default function FormDialog(props) {
           <Button onClick={handleClose} color="primary">
             Cancelar
           </Button>
-          <Button onClick={handleRegisterClient} color="primary">
+          <Button onClick={handleEditClient} color="primary">
             Salvar
           </Button>
         </DialogActions>
