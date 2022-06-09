@@ -1,4 +1,4 @@
-import { MyPostgresDataSource } from '../database/data_source';
+import { PostgresDataSource } from '../database/data_source';
 import { Client } from '../entities/Client';
 
 type ClientRequest = {
@@ -10,7 +10,7 @@ type ClientRequest = {
 export class CreateClientService {
 
   async execute({ name, email, contact }: ClientRequest) : Promise<Client> {
-    const repo = MyPostgresDataSource.getRepository(Client);
+    const repo = PostgresDataSource.getRepository(Client);
     
     const client = repo.create({
       name,

@@ -3,7 +3,7 @@ import { DataSource } from "typeorm";
 import { Client } from "../entities/Client";
 //require('dotenv/config');
 
-export const MyPostgresDataSource = new DataSource({
+export const PostgresDataSource = new DataSource({
   type: "postgres",
   host: "192.168.0.3",
   port: 5432,
@@ -12,12 +12,12 @@ export const MyPostgresDataSource = new DataSource({
   database: "locker-it",
   entities: [Client],
   subscribers: [],
-  migrations: ["./src/database/migrations/*.ts"],
+  migrations: ["./src/database/migrations/*.ts"]
 });
 
-MyPostgresDataSource.initialize()
+PostgresDataSource.initialize()
     .then(() => {
-        console.log("Mysql Data Source has been initialized!")
+        console.log("Postgres Data Source has been initialized!")
     })
     .catch((err) => {
         console.error("Error during Mysql Data Source initialization", err)

@@ -7,7 +7,7 @@ export class CreateClientController {
 
     const service = new CreateClientService();
 
-    const category = service.execute({ name, email, contact });
+    const category = await service.execute({ name, email, contact });
 
     return response.json(category);
   }
