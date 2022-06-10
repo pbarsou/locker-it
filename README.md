@@ -1,5 +1,9 @@
 # Locker It Crud Client
 
+ <p align="center">
+  <img src="client/src/assets/to_readme/Locker-It.gif" width="400px">
+  </p>
+
 ## Sobre o projeto
 
 Locker It é um protótipo de uma aplicação destinada a empresas de reservas de divisórias de guarda-volumes. 
@@ -45,6 +49,23 @@ Locker It é um protótipo de uma aplicação destinada a empresas de reservas d
   3. `$ cd Server `
   4. `$ npm install` or `$ yarn install`
   5. `$ npm dev` or `$ yarn dev`
+
+## Bibliotecas usadas
+
+### Front-end
+
+ + `@material-ui`
+ +  `Axios`
+
+### Back-end
+
++ `express`
++ `typescript`
++ `pg`
++ `ts-node-dev`
++ `typeorm`
++ `uuid`
++ `cors`
 
 ## Autor
 
