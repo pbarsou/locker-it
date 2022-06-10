@@ -25,22 +25,26 @@ Locker It é um protótipo de uma aplicação destinada a empresas de reservas d
 ## 💾 Instrução de criação do Banco de Dados
 
 `CREATE DATABASE locker-it;`
+ 
+*TypeORM: Provisionador da estrutura do BD da aplicação*
 
 
 ## ▶   Rodando o Projeto
+ 
+ 1. `$ git clone https://github.com/pbarsou/locker-it `
 
 ### Client
 
-  1. `$ cd Client `
-  2. `$ npm install` or `$ yarn install`
-  3. `$ npm start` or `$ yarn start`
+  2. `$ cd Client `
+  3. `$ npm install` or `$ yarn install`
+  4. `$ npm start` or `$ yarn start`
 
 ### Server
 
-  1. Troque os dados referentes ao seu banco de dados em `src/server/database/data_source.ts`
-  2. `$ cd Server `
-  3. `$ npm install` or `$ yarn install`
-  4. `$ npm dev` or `$ yarn dev`
+  2. Troque os dados referentes ao seu banco de dados em `src/server/database/data_source.ts`
+  3. `$ cd Server `
+  4. `$ npm install` or `$ yarn install`
+  5. `$ npm dev` or `$ yarn dev`
 
 ## Autor
 
